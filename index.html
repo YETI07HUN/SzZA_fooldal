@@ -1,228 +1,229 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <title>Összegző</title>
-  <link rel="stylesheet" href="./style.css">
-  <style>
-    /* Modal háttér */
-    .modal {
-        display: none; /* Kezdetben rejtett */
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.4);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt Portfólió | Összegző</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --accent-color: #00d2ff;
+            --bg-dark: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+        }
 
-    /* Modal tartalom */
-    .modal-content {
-        background-color: #fff;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 600px;
-    }
+        body {
+            background-color: var(--bg-dark);
+            color: #f8f9fa;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
+        }
 
-    /* Bezáró gomb */
-    .close {
-        color: #aaa;
-        font-size: 28px;
-        font-weight: bold;
-        position: absolute;
-        top: 10px;
-        right: 25px;
-    }
+        .hero-section {
+            padding: 60px 0;
+            text-align: center;
+        }
 
-    .close:hover,
-    .close:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
+        .hero-title {
+            font-weight: 600;
+            background: linear-gradient(to right, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+        }
 
-    /* Kép stílus */
-    .modal img {
-        max-width: 100%;
-        height: auto;
-    }
+        /* Projekt Kártya Stílus */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            height: 100%;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
 
-    /* Link stílus */
-    .modal a {
-        display: block;
-        margin-top: 20px;
-        font-size: 18px;
-        color: #007bff;
-        text-decoration: none;
-    }
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
+            text-decoration: none;
+        }
 
-    .modal a:hover {
-        text-decoration: underline;
-    }
+        .card-img-container {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* Card stílus */
-    .card {
-        display: block;
-        margin-bottom: 20px;
-        text-decoration: none;
-        color: inherit;
-    }
+        .card-img-top {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
 
-    .card__img {
-        width: 100%;
-        height: auto;
-        border-radius: 8px;
-    }
+        .project-card:hover .card-img-top {
+            transform: scale(1.1);
+        }
 
-    .card__footer {
-        display: block;
-        margin-top: 10px;
-        font-size: 18px;
-        font-weight: bold;
-    }
+        .card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    .card__action {
-        display: block;
-        margin-top: 10px;
-    }
-  </style>
+        .card-title {
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .btn-view {
+            background: transparent;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            align-self: flex-start;
+        }
+
+        .project-card:hover .btn-view {
+            background: var(--accent-color);
+            color: #000;
+        }
+
+        /* Modal Stílus */
+        .modal-content {
+            background: #1e293b;
+            border: 1px solid var(--accent-color);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .modal-footer { border-top: 1px solid rgba(255,255,255,0.1); }
+
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 text-center my-4">
-        <button id="openModalBtn" class="btn btn-primary">Előugró ablak megnyitása</button>
-      </div>
+
+    <div class="container">
+        <header class="hero-section">
+            <h1 class="hero-title mb-3">Projektgyűjtemény</h1>
+            <p class="text-secondary">Válogatás a legutóbbi munkáimból és alkalmazásaimból</p>
+            <button class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#infoModal">
+                Információ megnyitása
+            </button>
+        </header>
+
+        <div class="row g-4 justify-content-center">
+            
+            <div class="col-lg-4 col-md-6">
+                <a href="https://yeti07hun.github.io/masodfokuegyenlet/" class="project-card">
+                    <div class="card-img-container">
+                        <img src="masodfok.png" class="card-img-top" alt="Másodfokú">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Másodfokú-egyenlet megoldó</h5>
+                        <div class="btn-view">Megnyitás &rarr;</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <a href="https://drive.google.com/drive/folders/1m4TBW1-tMJMmmWvCBLlMgTA6icIPOl_R?usp=drive_link" class="project-card">
+                    <div class="card-img-container">
+                        <img src="https://cdn.vox-cdn.com/thumbor/zLQoUa2MeowDb_BXcajiOtfaqmo=/0x0:2040x1360/2000x1333/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/25355957/STK263_CANVA_D.png" class="card-img-top" alt="Canva">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Canva munkák</h5>
+                        <div class="btn-view">Megnyitás &rarr;</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <a href="https://yttamas210.github.io/projekt-2/index2.html" class="project-card">
+                    <div class="card-img-container">
+                        <img src="elegedett.png" class="card-img-top" alt="Kérdőív">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Elégedettségi kérdőív</h5>
+                        <div class="btn-view">Megnyitás &rarr;</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <a href="https://drive.google.com/open?authuser=0&id=1h-3VBwEhL4F8OGL_sX2zJk2g0cITMzjAhcr8wkn03eM" class="project-card">
+                    <div class="card-img-container">
+                        <img src="ertekelo.png" class="card-img-top" alt="Értékelő">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Értékelő táblázat</h5>
+                        <div class="btn-view">Megnyitás &rarr;</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <a href="https://yeti07hun.github.io/Chatbot_Page/" class="project-card">
+                    <div class="card-img-container">
+                        <img src="szines.png" class="card-img-top" alt="Összegző">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Összegző oldal</h5>
+                        <div class="btn-view">Megnyitás &rarr;</div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        <footer class="text-center py-5 mt-5">
+            <p class="text-muted small">&copy; 2024 Minden jog fenntartva</p>
+        </footer>
     </div>
 
-    <div class="row">
-      <div class="col-md-4 col-sm-6 mb-4">
-        <a href="https://yeti07hun.github.io/masodfokuegyenlet/" class="card">
-          <img src="masodfok.png" class="card__img">
-          <span class="card__footer">
-            <span>Másodfokú-egyenlet megoldó</span>
-          </span>
-          <span class="card__action">
-            <svg viewBox="0 0 448 512" title="play">
-              <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <div class="col-md-4 col-sm-6 mb-4">
-        <a href="https://drive.google.com/drive/folders/1m4TBW1-tMJMmmWvCBLlMgTA6icIPOl_R?usp=drive_link" class="card">
-          <img src="https://cdn.vox-cdn.com/thumbor/zLQoUa2MeowDb_BXcajiOtfaqmo=/0x0:2040x1360/2000x1333/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/25355957/STK263_CANVA_D.png" class="card__img">
-          <span class="card__footer">
-            <span>Canva munkák</span>
-          </span>
-          <span class="card__action">
-            <svg viewBox="0 0 448 512" title="play">
-              <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <div class="col-md-4 col-sm-6 mb-4">
-        <a href="https://yttamas210.github.io/projekt-2/index2.html" class="card">
-          <img src="elegedett.png" class="card__img">
-          <span class="card__footer">
-            <span>Elégedettségi kérdőív</span>
-          </span>
-          <span class="card__action">
-            <svg viewBox="0 0 448 512" title="play">
-              <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <div class="col-md-4 col-sm-6 mb-4">
-        <a href="https://drive.google.com/open?authuser=0&id=1h-3VBwEhL4F8OGL_sX2zJk2g0cITMzjAhcr8wkn03eM" class="card">
-          <img src="ertekelo.png" class="card__img">
-          <span class="card__footer">
-            <span>Értékelő táblázat</span>
-          </span>
-          <span class="card__action">
-            <svg viewBox="0 0 448 512" title="play">
-              <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <div class="col-md-4 col-sm-6 mb-4">
-        <a href="https://yeti07hun.github.io/Chatbot_Page/" class="card">
-          <img src="szines.png" class="card__img">
-          <span class="card__footer">
-            <span>Összegző oldal</span>
-          </span>
-          <span class="card__action">
-            <svg viewBox="0 0 448 512" title="play">
-              <path d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-            </svg>
-          </span>
-        </a>
-      </div>
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Üdvözöllek!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="https://via.placeholder.com/600x300" class="img-fluid rounded mb-3" alt="Kiemelt kép">
+                    <p>Ez egy példa modális ablak, amit a Bootstrap 5 kezel. Itt fontos híreket vagy leírásokat helyezhetsz el.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="https://example.com" target="_blank" class="btn btn-primary w-100">Tovább a részletekre</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <!-- Modal -->
-  <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <img id="modalImage" src="" alt="Kép itt jelenik meg">
-      <a id="modalLink" href="#" target="_blank">Klikk ide a linkhez</a>
-    </div>
-  </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script type="text/javascript">
+        if (!Array.isArray(window.qbOptions)) { window.qbOptions = [] }
+        window.qbOptions.push({"baseUrl":"https://botsrv2.com","use":"5doqer3K6VrR6ZL0/NePdxmo3yGmj8K6Q"});
+    </script>
+    <script type="text/javascript" src="https://static.botsrv2.com/website/js/widget2.js" crossorigin="anonymous" defer></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  <script type="text/javascript">
-    if (!Array.isArray(window.qbOptions)) {
-      window.qbOptions = []
-    }
-    window.qbOptions.push({"baseUrl":"https://botsrv2.com","use":"5doqer3K6VrR6ZL0/NePdxmo3yGmj8K6Q"});
-  </script>
-  <script type="text/javascript" src="https://static.botsrv2.com/website/js/widget2.js" crossorigin="anonymous" defer data-no-minify="1" data-cfasync="false"></script>
-  <script>
-    // Modal
-    var modal = document.getElementById("myModal");
-
-    // Gomb, ami megnyitja a modalt
-    var btn = document.getElementById("openModalBtn");
-
-    // Bezáró gomb
-    var span = document.getElementsByClassName("close")[0];
-
-    // Link és kép beállítása
-    var imageSrc = "https://via.placeholder.com/600x300"; // Ide másold a kívánt kép URL-jét
-    var linkHref = "https://example.com"; // Link URL
-
-    // Gomb kattintásra megnyitja a modalt
-    btn.onclick = function() {
-        modal.style.display = "block";
-        document.getElementById("modalImage").src = imageSrc;
-        document.getElementById("modalLink").href = linkHref;
-    }
-
-    // Bezáró gomb kattintásra bezárja a modalt
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // Ha a felhasználó a háttérre kattint, akkor bezárja a modalt
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-  </script>
 </body>
 </html>
