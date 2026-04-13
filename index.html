@@ -75,19 +75,6 @@ main{position:relative;z-index:1}
 .section-title{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem}
 .section-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:2.5rem;letter-spacing:.06em}
 
-/* ================================================
-   PROJEKT KÁRTYÁK
-   ================================================
-   Új kártya hozzáadásához másold be az alábbi
-   sablont a "cards" div-en belülre:
-
-   <a class="card reveal" href="LINK_IDE" target="_blank">
-     <div class="card-tag" data-hu="KATEGÓRIA_HU" data-en="KATEGÓRIA_EN">KATEGÓRIA_HU</div>
-     <h3 data-hu="CÍM_HU" data-en="CÍM_EN">CÍM_HU</h3>
-     <p data-hu="LEÍRÁS_HU" data-en="LEÍRÁS_EN">LEÍRÁS_HU</p>
-     <div class="card-link"><span data-hu="Megnyitás" data-en="Open">Megnyitás</span> →</div>
-   </a>
-   ================================================ */
 .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
 .card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.5rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden;transition:all .25s}
 .card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(79,156,249,.04) 0%,transparent 60%);opacity:0;transition:opacity .25s}
@@ -199,10 +186,7 @@ footer{text-align:center;padding:2.5rem;border-top:1px solid var(--border);font-
   </div>
 
   <div class="cards">
-
-    <!-- =====================================================
-         ÚJ KÁRTYA SABLON – másold be ide, és töltsd ki:
-
+<!--aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa-->
          <a class="card reveal" href="LINK" target="_blank">
            <div class="card-tag"
                 data-hu="KATEGÓRIA HU"
@@ -215,7 +199,6 @@ footer{text-align:center;padding:2.5rem;border-top:1px solid var(--border);font-
              <span data-hu="Megnyitás" data-en="Open">Megnyitás</span> →
            </div>
          </a>
-         ===================================================== -->
 
     <a class="card reveal" href="https://github.com/YETI07HUN" target="_blank">
       <div class="card-tag">GitHub</div>
