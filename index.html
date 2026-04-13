@@ -1,229 +1,368 @@
 <!DOCTYPE html>
 <html lang="hu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projekt Portfólió | Összegző</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-color: #0d6efd;
-            --accent-color: #00d2ff;
-            --bg-dark: #0f172a;
-            --card-bg: rgba(255, 255, 255, 0.05);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Szolomájer Zétény Attila – Portfolio</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080b10;--bg2:#0d1117;--bg3:#111820;
+  --accent:#4f9cf9;--accent2:#a8cfff;--accent3:#1d3a5c;
+  --text:#e8f0fc;--muted:#5a7a9e;--card:#0d1520;
+  --border:rgba(79,156,249,0.15);--border2:rgba(79,156,249,0.3);
+  --mono:'Courier New',monospace;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;line-height:1.6}
 
-        body {
-            background-color: var(--bg-dark);
-            color: #f8f9fa;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            background-image: radial-gradient(circle at top right, #1e293b, #0f172a);
-        }
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(79,156,249,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(79,156,249,0.03) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0;
+}
 
-        .hero-section {
-            padding: 60px 0;
-            text-align: center;
-        }
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 2.5rem;height:60px;
+  background:rgba(8,11,16,0.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--accent2);letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.nav-logo::before{content:'';display:block;width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-right{display:flex;align-items:center;gap:1.5rem}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
 
-        .hero-title {
-            font-weight: 600;
-            background: linear-gradient(to right, #fff, var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 2.5rem;
-        }
+.lang-toggle{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.lang-btn{padding:4px 10px;font-family:var(--mono);font-size:11px;font-weight:700;color:var(--muted);background:transparent;border:none;cursor:pointer;transition:all .2s;letter-spacing:.06em}
+.lang-btn.active{background:var(--accent);color:#fff}
 
-        /* Projekt Kártya Stílus */
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 100%;
-            text-decoration: none;
-            display: flex;
-            flex-direction: column;
-            backdrop-filter: blur(10px);
-        }
+main{position:relative;z-index:1}
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(0, 210, 255, 0.2);
-            text-decoration: none;
-        }
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2.5rem 5rem;max-width:900px;margin:0 auto}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.18em;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;margin-bottom:2rem}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';display:block;height:1px;background:var(--accent)}
+.hero-eyebrow::before{width:30px}
+.hero-eyebrow::after{width:30px}
+.hero h1{font-size:clamp(3rem,8vw,6rem);font-weight:300;letter-spacing:-.04em;line-height:1;margin-bottom:.3rem;color:var(--text)}
+.hero h1 strong{font-weight:700;color:var(--accent2);display:block}
+.hero-role{font-family:var(--mono);font-size:13px;color:var(--accent);margin:1.5rem 0 1rem;letter-spacing:.08em}
+.hero-desc{font-size:15px;color:var(--muted);max-width:500px;line-height:1.8;margin-bottom:2.5rem}
 
-        .card-img-container {
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-        }
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;background:var(--card);border:1px solid var(--border);border-radius:3px;font-family:var(--mono);font-size:11px;color:var(--muted);text-decoration:none;transition:all .2s}
+.chip:hover{border-color:var(--accent);color:var(--accent2);background:rgba(79,156,249,.06)}
+.chip svg{width:13px;height:13px;opacity:.6}
 
-        .card-img-top {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+.cv-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:3px;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.1em;text-decoration:none;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-solid{background:var(--accent);color:#080b10;border:none}
+.btn-solid:hover{background:var(--accent2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--accent2);border:1px solid var(--border2)}
+.btn-ghost:hover{border-color:var(--accent);background:rgba(79,156,249,.08);transform:translateY(-1px)}
 
-        .project-card:hover .card-img-top {
-            transform: scale(1.1);
-        }
+.divider{max-width:900px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;gap:1rem}
+.divider-line{flex:1;height:1px;background:var(--border)}
+.divider-label{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.16em;text-transform:uppercase}
 
-        .card-body {
-            padding: 20px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.section{max-width:900px;margin:0 auto;padding:5rem 2.5rem}
+.section-title{font-size:clamp(1.2rem,2.5vw,1.6rem);font-weight:700;letter-spacing:-.02em;margin-bottom:.4rem}
+.section-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:2.5rem;letter-spacing:.06em}
 
-        .card-title {
-            color: #fff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
+/* ================================================
+   PROJEKT KÁRTYÁK
+   ================================================
+   Új kártya hozzáadásához másold be az alábbi
+   sablont a "cards" div-en belülre:
 
-        .btn-view {
-            background: transparent;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            border-radius: 8px;
-            padding: 8px 20px;
-            font-size: 0.9rem;
-            transition: 0.3s;
-            align-self: flex-start;
-        }
+   <a class="card reveal" href="LINK_IDE" target="_blank">
+     <div class="card-tag" data-hu="KATEGÓRIA_HU" data-en="KATEGÓRIA_EN">KATEGÓRIA_HU</div>
+     <h3 data-hu="CÍM_HU" data-en="CÍM_EN">CÍM_HU</h3>
+     <p data-hu="LEÍRÁS_HU" data-en="LEÍRÁS_EN">LEÍRÁS_HU</p>
+     <div class="card-link"><span data-hu="Megnyitás" data-en="Open">Megnyitás</span> →</div>
+   </a>
+   ================================================ */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+.card{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.5rem;text-decoration:none;color:var(--text);display:flex;flex-direction:column;gap:.75rem;position:relative;overflow:hidden;transition:all .25s}
+.card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(79,156,249,.04) 0%,transparent 60%);opacity:0;transition:opacity .25s}
+.card:hover{border-color:var(--border2);transform:translateY(-2px)}
+.card:hover::after{opacity:1}
+.card-tag{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+.card h3{font-size:1rem;font-weight:700;line-height:1.3}
+.card p{font-size:12px;color:var(--muted);line-height:1.7;flex:1;font-family:var(--mono)}
+.card-link{font-family:var(--mono);font-size:11px;color:var(--accent2);display:flex;align-items:center;gap:6px;transition:gap .2s}
+.card:hover .card-link{gap:12px}
 
-        .project-card:hover .btn-view {
-            background: var(--accent-color);
-            color: #000;
-        }
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.contact-item{background:var(--card);border:1px solid var(--border);border-radius:6px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);transition:all .2s}
+.contact-item:hover{border-color:var(--border2);background:rgba(79,156,249,.04)}
+.contact-icon{width:36px;height:36px;border-radius:6px;background:rgba(79,156,249,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:1.5}
+.contact-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.contact-val{font-size:13px;font-weight:600}
 
-        /* Modal Stílus */
-        .modal-content {
-            background: #1e293b;
-            border: 1px solid var(--accent-color);
-            color: white;
-            border-radius: 20px;
-        }
+footer{text-align:center;padding:2.5rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.08em;position:relative;z-index:1}
 
-        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .modal-footer { border-top: 1px solid rgba(255,255,255,0.1); }
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
 
-    </style>
+@media(max-width:640px){
+  nav{padding:0 1rem}
+  .hero{padding:7rem 1rem 4rem}
+  .section{padding:3rem 1rem}
+  .divider{padding:0 1rem}
+  .contact-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+</style>
 </head>
 <body>
 
-    <div class="container">
-        <header class="hero-section">
-            <h1 class="hero-title mb-3">Projektgyűjtemény</h1>
-            <p class="text-secondary">Válogatás a legutóbbi munkáimból és alkalmazásaimból</p>
-            <button class="btn btn-outline-light mt-3" data-bs-toggle="modal" data-bs-target="#infoModal">
-                Információ megnyitása
-            </button>
-        </header>
-
-        <div class="row g-4 justify-content-center">
-            
-            <div class="col-lg-4 col-md-6">
-                <a href="https://yeti07hun.github.io/masodfokuegyenlet/" class="project-card">
-                    <div class="card-img-container">
-                        <img src="masodfok.png" class="card-img-top" alt="Másodfokú">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Másodfokú-egyenlet megoldó</h5>
-                        <div class="btn-view">Megnyitás &rarr;</div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <a href="https://drive.google.com/drive/folders/1m4TBW1-tMJMmmWvCBLlMgTA6icIPOl_R?usp=drive_link" class="project-card">
-                    <div class="card-img-container">
-                        <img src="https://cdn.vox-cdn.com/thumbor/zLQoUa2MeowDb_BXcajiOtfaqmo=/0x0:2040x1360/2000x1333/filters:focal(1020x680:1021x681)/cdn.vox-cdn.com/uploads/chorus_asset/file/25355957/STK263_CANVA_D.png" class="card-img-top" alt="Canva">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Canva munkák</h5>
-                        <div class="btn-view">Megnyitás &rarr;</div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <a href="https://yttamas210.github.io/projekt-2/index2.html" class="project-card">
-                    <div class="card-img-container">
-                        <img src="elegedett.png" class="card-img-top" alt="Kérdőív">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Elégedettségi kérdőív</h5>
-                        <div class="btn-view">Megnyitás &rarr;</div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <a href="https://drive.google.com/open?authuser=0&id=1h-3VBwEhL4F8OGL_sX2zJk2g0cITMzjAhcr8wkn03eM" class="project-card">
-                    <div class="card-img-container">
-                        <img src="ertekelo.png" class="card-img-top" alt="Értékelő">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Értékelő táblázat</h5>
-                        <div class="btn-view">Megnyitás &rarr;</div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <a href="https://yeti07hun.github.io/Chatbot_Page/" class="project-card">
-                    <div class="card-img-container">
-                        <img src="szines.png" class="card-img-top" alt="Összegző">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">Összegző oldal</h5>
-                        <div class="btn-view">Megnyitás &rarr;</div>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-
-        <footer class="text-center py-5 mt-5">
-            <p class="text-muted small">&copy; 2024 Minden jog fenntartva</p>
-        </footer>
+<nav>
+  <div class="nav-logo">SZA.portfolio</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#projektek" data-hu="Projektek" data-en="Projects">Projektek</a>
+      <a href="#kapcsolat" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</a>
     </div>
-
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Üdvözöllek!</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center">
-                    <img src="https://via.placeholder.com/600x300" class="img-fluid rounded mb-3" alt="Kiemelt kép">
-                    <p>Ez egy példa modális ablak, amit a Bootstrap 5 kezel. Itt fontos híreket vagy leírásokat helyezhetsz el.</p>
-                </div>
-                <div class="modal-footer">
-                    <a href="https://example.com" target="_blank" class="btn btn-primary w-100">Tovább a részletekre</a>
-                </div>
-            </div>
-        </div>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('hu')">HU</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
     </div>
+  </div>
+</nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script type="text/javascript">
-        if (!Array.isArray(window.qbOptions)) { window.qbOptions = [] }
-        window.qbOptions.push({"baseUrl":"https://botsrv2.com","use":"5doqer3K6VrR6ZL0/NePdxmo3yGmj8K6Q"});
-    </script>
-    <script type="text/javascript" src="https://static.botsrv2.com/website/js/widget2.js" crossorigin="anonymous" defer></script>
+<main>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span data-hu="üdvözöllek" data-en="welcome">üdvözöllek</span>
+  </div>
+  <h1>Szolomájer<strong>Zétény Attila</strong></h1>
+  <div class="hero-role">
+    <span data-hu="// IT hallgató & projekt-alkotó" data-en="// IT student & project creator">// IT hallgató & projekt-alkotó</span>
+  </div>
+  <p class="hero-desc"
+     data-hu="Általános IT irányban tanulok — webes és digitális projektek, eszközök, és ötletek alkotója. Ez az oldal a munkáim gyűjteménye. Böngéssz bátran."
+     data-en="Studying general IT — building web and digital projects, tools, and ideas. This page is a collection of my work. Feel free to explore.">
+    Általános IT irányban tanulok — webes és digitális projektek, eszközök, és ötletek alkotója. Ez az oldal a munkáim gyűjteménye. Böngéssz bátran.
+  </p>
+
+  <div class="chips">
+    <a class="chip" href="https://github.com/YETI07HUN" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      GitHub
+    </a>
+    <a class="chip" href="https://sites.google.com/view/projektekszza11szf/főoldal" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      Google Sites
+    </a>
+    <a class="chip" href="https://www.linkedin.com/in/zétény-attila-szolomájer-6959633bb" target="_blank">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a class="chip" href="mailto:zeteny070822@gmail.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      zeteny070822@gmail.com
+    </a>
+  </div>
+
+  <div class="cv-row">
+    <!-- CV LINKEK: cseréld le a href="#" részt a valós Google Drive linkre -->
+    <a class="btn btn-solid" href="#" title="CV letöltése – Magyar">
+      ↓ <span data-hu="CV letöltése – Magyar" data-en="Download CV – Hungarian">CV letöltése – Magyar</span>
+    </a>
+    <a class="btn btn-ghost" href="#" title="Download CV – English">
+      ↓ <span data-hu="CV letöltése – English" data-en="Download CV – English">CV letöltése – English</span>
+    </a>
+  </div>
+</section>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-label" data-hu="projektek" data-en="projects">projektek</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- ===================== PROJEKTEK ===================== -->
+<section class="section" id="projektek">
+  <div class="reveal">
+    <div class="section-title" data-hu="Online munkák & projektek" data-en="Online work & projects">Online munkák & projektek</div>
+    <div class="section-sub" data-hu="// kattints a kártyára a megnyitáshoz" data-en="// click a card to open">// kattints a kártyára a megnyitáshoz</div>
+  </div>
+
+  <div class="cards">
+
+    <!-- =====================================================
+         ÚJ KÁRTYA SABLON – másold be ide, és töltsd ki:
+
+         <a class="card reveal" href="LINK" target="_blank">
+           <div class="card-tag"
+                data-hu="KATEGÓRIA HU"
+                data-en="CATEGORY EN">KATEGÓRIA HU</div>
+           <h3 data-hu="CÍM MAGYARUL"
+               data-en="TITLE IN ENGLISH">CÍM MAGYARUL</h3>
+           <p  data-hu="Leírás magyarul..."
+               data-en="Description in English...">Leírás magyarul...</p>
+           <div class="card-link">
+             <span data-hu="Megnyitás" data-en="Open">Megnyitás</span> →
+           </div>
+         </a>
+         ===================================================== -->
+
+    <a class="card reveal" href="https://github.com/YETI07HUN" target="_blank">
+      <div class="card-tag">GitHub</div>
+      <h3 data-hu="GitHub repótár" data-en="GitHub repositories">GitHub repótár</h3>
+      <p data-hu="Nyílt forráskódú projektek, kódrészletek és tanulási anyagok — mind egy helyen."
+         data-en="Open source projects, code snippets, and learning materials — all in one place.">
+        Nyílt forráskódú projektek, kódrészletek és tanulási anyagok — mind egy helyen.
+      </p>
+      <div class="card-link"><span data-hu="Megnyitás" data-en="Open">Megnyitás</span> →</div>
+    </a>
+
+    <a class="card reveal" href="https://sites.google.com/view/projektekszza11szf/főoldal" target="_blank">
+      <div class="card-tag">Google Sites</div>
+      <h3 data-hu="Projektgyűjtemény" data-en="Project collection">Projektgyűjtemény</h3>
+      <p data-hu="Iskolai és önálló munkáim összefoglalója, bemutatókkal és leírásokkal."
+         data-en="Summary of my school and independent projects, with presentations and descriptions.">
+        Iskolai és önálló munkáim összefoglalója, bemutatókkal és leírásokkal.
+      </p>
+      <div class="card-link"><span data-hu="Megnyitás" data-en="Open">Megnyitás</span> →</div>
+    </a>
+
+    <a class="card reveal" href="https://www.linkedin.com/in/zétény-attila-szolomájer-6959633bb" target="_blank">
+      <div class="card-tag">LinkedIn</div>
+      <h3 data-hu="Szakmai profil" data-en="Professional profile">Szakmai profil</h3>
+      <p data-hu="Tanulmányaim, készségeim és szakmai kapcsolataim LinkedIn-en."
+         data-en="My studies, skills, and professional connections on LinkedIn.">
+        Tanulmányaim, készségeim és szakmai kapcsolataim LinkedIn-en.
+      </p>
+      <div class="card-link"><span data-hu="Profil" data-en="Profile">Profil</span> →</div>
+    </a>
+
+    <!-- CV kártyák – cseréld le a href="#" részt a valós linkekre -->
+    <a class="card reveal" href="#" title="CV – HU">
+      <div class="card-tag" data-hu="Dokumentum" data-en="Document">Dokumentum</div>
+      <h3 data-hu="CV – Magyar" data-en="CV – Hungarian">CV – Magyar</h3>
+      <p data-hu="Önéletrajzom magyar nyelven, PDF formátumban letölthető."
+         data-en="My resume in Hungarian, available as a downloadable PDF.">
+        Önéletrajzom magyar nyelven, PDF formátumban letölthető.
+      </p>
+      <div class="card-link"><span data-hu="Letöltés" data-en="Download">Letöltés</span> →</div>
+    </a>
+
+    <a class="card reveal" href="#" title="CV – EN">
+      <div class="card-tag">Document</div>
+      <h3 data-hu="CV – English" data-en="CV – English">CV – English</h3>
+      <p data-hu="Önéletrajzom angol nyelven, PDF formátumban letölthető."
+         data-en="My resume in English, available as a downloadable PDF.">
+        Önéletrajzom angol nyelven, PDF formátumban letölthető.
+      </p>
+      <div class="card-link"><span data-hu="Letöltés" data-en="Download">Letöltés</span> →</div>
+    </a>
+
+    <a class="card reveal" href="mailto:zeteny070822@gmail.com">
+      <div class="card-tag" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</div>
+      <h3 data-hu="Írj nekem!" data-en="Get in touch!">Írj nekem!</h3>
+      <p data-hu="Kérdés, együttműködési ajánlat, vagy csak szólnál? Várom az üzeneteket."
+         data-en="Questions, collaboration offers, or just want to say hi? Messages are welcome.">
+        Kérdés, együttműködési ajánlat, vagy csak szólnál? Várom az üzeneteket.
+      </p>
+      <div class="card-link"><span data-hu="Email küldése" data-en="Send email">Email küldése</span> →</div>
+    </a>
+
+  </div>
+</section>
+
+<div class="divider reveal">
+  <div class="divider-line"></div>
+  <div class="divider-label" data-hu="kapcsolat" data-en="contact">kapcsolat</div>
+  <div class="divider-line"></div>
+</div>
+
+<!-- ===================== KAPCSOLAT ===================== -->
+<section class="section" id="kapcsolat">
+  <div class="reveal">
+    <div class="section-title" data-hu="Elérhetőségek" data-en="Contact">Elérhetőségek</div>
+    <div class="section-sub" data-hu="// minden platform egy helyen" data-en="// all platforms in one place">// minden platform egy helyen</div>
+  </div>
+  <div class="contact-grid reveal">
+    <a class="contact-item" href="mailto:zeteny070822@gmail.com">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-val">zeteny070822@gmail.com</div>
+      </div>
+    </a>
+    <a class="contact-item" href="https://github.com/YETI07HUN" target="_blank">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24" stroke="none" fill="var(--accent)"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.268 2.75 1.026A9.578 9.578 0 0112 6.836a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.026 2.747-1.026.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-val">YETI07HUN</div>
+      </div>
+    </a>
+    <a class="contact-item" href="https://www.linkedin.com/in/zétény-attila-szolomájer-6959633bb" target="_blank">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-val">Szolomájer Zétény Attila</div>
+      </div>
+    </a>
+    <a class="contact-item" href="https://sites.google.com/view/projektekszza11szf/főoldal" target="_blank">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div>
+        <div class="contact-label" data-hu="Projekt oldal" data-en="Project site">Projekt oldal</div>
+        <div class="contact-val">Google Sites</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <span style="color:var(--accent2)">Szolomájer Zétény Attila</span> &nbsp;·&nbsp; Budapest &nbsp;·&nbsp; 2025
+</footer>
+
+<script>
+let currentLang = 'hu';
+
+function setLang(lang) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent.toLowerCase() === lang);
+  });
+  document.querySelectorAll('[data-hu],[data-en]').forEach(el => {
+    const val = el.getAttribute('data-' + lang);
+    if (val) el.textContent = val;
+  });
+}
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('in'), i * 70);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
 
 </body>
 </html>
